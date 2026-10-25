@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+
+# 发行包构建产物
+dist/
+
