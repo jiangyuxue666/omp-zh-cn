@@ -98,8 +98,8 @@ omp-zh-cn/
 
 ## 兼容性
 
-- 实际验证环境：macOS、OMP 18.12.6。
-- Windows 及其他 OMP 版本尚未实际验证。
+- 已在 macOS、Linux 和 Windows 上通过验证，OMP 版本 18.12.6。
+- 其他 OMP 版本尚未实际验证。
 - 扩展依赖 OMP 的内部组件接口，OMP 升级后可能需要相应调整。
 
 ## 工作原理与边界
