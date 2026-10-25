@@ -1,8 +1,13 @@
 # OMP 简体中文扩展
 
 [![Release](https://img.shields.io/github/v/release/jiangyuxue666/omp-zh-cn?label=release)](https://github.com/jiangyuxue666/omp-zh-cn/releases)
+![OMP](https://img.shields.io/badge/OMP-18.12.6-orange)
 [![License](https://img.shields.io/github/license/jiangyuxue666/omp-zh-cn)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-blue)]()
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-blue)
+[![Stars](https://img.shields.io/github/stars/jiangyuxue666/omp-zh-cn)](https://github.com/jiangyuxue666/omp-zh-cn/stargazers)
+[![Issues](https://img.shields.io/github/issues/jiangyuxue666/omp-zh-cn)](https://github.com/jiangyuxue666/omp-zh-cn/issues)
+
+> 适配 **OMP 18.12.6** · macOS / Linux / Windows · 本地词典，无需联网
 
 为 OMP（Oh My Pi）提供简体中文界面翻译的本地扩展。它使用本地词典翻译 OMP 自带的命令说明、设置项和部分界面提示，无需联网、额外模型或 Python 环境。
 
@@ -73,13 +78,18 @@ omp -e ./index.ts
 
 macOS、Linux 和 Windows PowerShell 都支持这种显式加载方式。注意不要同时自动加载扩展目录里的副本和 `-e` 指定的副本。
 
+### 更新与卸载
+
+- **更新**：下载新版本压缩包，覆盖 `zh-cn` 目录中的文件，然后重启 OMP。
+- **卸载**：删除 `zh-cn` 目录（或其中的扩展文件），然后重启 OMP。`/zh off` 只是关闭翻译，不会卸载扩展。
+
 ## 使用
 
-```text
-/zh status   # 查看接入状态
-/zh on       # 开启汉化
-/zh off      # 关闭汉化
-```
+| 命令 | 作用 |
+| --- | --- |
+| `/zh status` | 查看汉化接入状态 |
+| `/zh on` | 开启汉化 |
+| `/zh off` | 关闭汉化 |
 
 开关只作用于当前 OMP 进程，不会写入语言配置。已经打开的静态帮助面板需要关闭再重新打开才会刷新。
 
@@ -91,6 +101,7 @@ omp-zh-cn/
 ├── zh.json            # 命令、帮助和界面词典
 ├── settings-desc.json # 设置与选项说明词典
 ├── README.md
+├── CHANGELOG.md
 └── LICENSE
 ```
 
@@ -101,6 +112,33 @@ omp-zh-cn/
 - 已在 macOS、Linux 和 Windows 上通过验证，OMP 版本 18.12.6。
 - 其他 OMP 版本尚未实际验证。
 - 扩展依赖 OMP 的内部组件接口，OMP 升级后可能需要相应调整。
+
+## 常见问题
+
+### 安装后界面还是英文？
+
+请依次检查：
+
+1. `index.ts`、`zh.json`、`settings-desc.json` 是否直接位于 `zh-cn` 目录下，而不是多套了一层文件夹。
+2. 是否已经重启 OMP。
+3. 执行 `/zh status`，确认汉化处于开启状态。
+4. 是否同时通过扩展目录自动加载和 `omp -e` 加载了两份副本。
+
+### 支持哪些 OMP 版本？
+
+目前已在 OMP 18.12.6 上验证。其他版本可能可用，但 OMP 内部接口变化时可能需要调整。
+
+### 会上传我的数据吗？
+
+不会。扩展只读取仓库内的本地 JSON 词典并在界面显示时做匹配，不调用网络接口，也不会上传任何内容。
+
+### 会修改 OMP 本体吗？
+
+不会。扩展不修改 OMP 官方可执行文件，也不接管命令执行和设置保存逻辑。
+
+### 为什么有些文字仍然是英文？
+
+扩展只翻译已接入的内置说明和提示。未接入、未收录或受布局限制的文字可能保持英文，欢迎通过 Issue 或 Pull Request 补充词典。
 
 ## 工作原理与边界
 
@@ -113,7 +151,7 @@ omp-zh-cn/
 
 已在 OMP 18.12.6 中检查官方随附命令的同步/异步候选、汉化开关、用户同名覆盖和第三方同文案保护，以及 76 列/256 色、170 列/真彩色界面。其他前端、全部条件设置、错误和认证分支、长期运行及插件组合仍需进一步验证。
 
-## 贡献
+## 参与贡献
 
 欢迎提交 Issue 或 Pull Request 补充词典、修正翻译。提交前请确认：
 

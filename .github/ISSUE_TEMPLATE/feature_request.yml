@@ -1,0 +1,48 @@
+name: 功能建议 / 翻译补充
+description: 建议新增翻译、补充词典或改进扩展功能
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢建议！补充或修正翻译时，请尽量提供英文原文与建议译文。
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 建议类型
+      options:
+        - 翻译补充
+        - 翻译修正
+        - 新功能
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: omp-version
+    attributes:
+      label: 相关 OMP 版本
+      placeholder: 例如 18.12.6
+    validations:
+      required: false
+
+  - type: textarea
+    id: translation
+    attributes:
+      label: 英文原文与建议译文
+      description: 如果是翻译补充或修正，请填写此项
+      placeholder: |
+        原文：...
+        建议译文：...
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 说明
+      description: 请描述你希望解决的问题或改进的场景
+    validations:
+      required: true
